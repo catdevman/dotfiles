@@ -1,4 +1,7 @@
 local v = vim
+
+v.g.grepprg = "rg --vimgrep --smart-case --hidden --follow"
+
 v.opt.number = true
 v.opt.relativenumber = true
 
