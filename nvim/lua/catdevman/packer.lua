@@ -123,8 +123,6 @@ use {
     "ThePrimeagen/vim-be-good"
 }
 
-<<<<<<< Updated upstream
-=======
 use {
   "epwalsh/obsidian.nvim",
   lazy = true,
@@ -227,7 +225,6 @@ use {
     end, { noremap = false, expr = true })
   end,
 }
->>>>>>> Stashed changes
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
