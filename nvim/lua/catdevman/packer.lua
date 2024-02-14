@@ -120,9 +120,8 @@ use {
         require('Comment').setup()
     end
 }
-use {
-    "ThePrimeagen/vim-be-good"
-}
+use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
