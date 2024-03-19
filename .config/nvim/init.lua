@@ -134,6 +134,7 @@ require('lazy').setup({
         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+        ['<leader>f'] = { name = '[F]ind', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       }
     end,
@@ -192,6 +193,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>')
       vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
       vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]ile' })
+      vim.keymap.set('n', '<leader>fgi', builtin.git_files, { desc = '[F]ind [Gi]t' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind [G]rep' })
 
       vim.keymap.set('n', 'Q', '<noop>')
       -- Slightly advanced example of overriding default behavior and theme
@@ -242,17 +246,18 @@ require('lazy').setup({
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          local builtin = require 'telescope.builtin'
+          map('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
 
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          map('gr', builtin.lsp_references, '[G]oto [R]eferences')
 
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
 
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
 
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
 
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
@@ -281,7 +286,6 @@ require('lazy').setup({
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
-        -- clangd = {},
         gopls = {},
         java_language_server = {},
 
@@ -531,11 +535,6 @@ require('lazy').setup({
     },
   },
 })
-
-local builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fgi', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 
 require('telescope').setup {
   pickers = {
