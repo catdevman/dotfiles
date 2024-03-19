@@ -1,1 +1,0 @@
--- vim.keymap.set("n", "<C-S-h>", ":TmuxNavigateLeft<cr>")
