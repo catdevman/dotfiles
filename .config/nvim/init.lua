@@ -2,6 +2,7 @@ local vim = vim
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.wrap = false
 vim.g.have_nerd_font = true
 
 vim.opt.number = true
