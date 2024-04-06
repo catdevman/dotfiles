@@ -10,6 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $ctl Control
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -33,8 +35,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Open audio control by default
+exec --no-startup-id pasystray
+
+
 # keybinding for lockscreen w/ black background
-bindsym Control+Mod1+l exec "i3lock -c c9c9c9"
+bindsym $ctl+$alt+l exec "i3lock -c c9c9c9"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
